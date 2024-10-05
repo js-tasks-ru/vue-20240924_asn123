@@ -1,4 +1,4 @@
-import { defineComponent, computed } from 'vue'
+import { defineComponent } from 'vue'
 import { UiAlert, UiContainer } from '@shgk/vue-course-ui'
 import MeetupAgenda from './MeetupAgenda.js'
 import MeetupDescription from './MeetupDescription.js'
@@ -24,16 +24,6 @@ export default defineComponent({
       required: true,
     },
   },
-
-  /*
-  setup(props) {
-    const meetup = computed(() => props.meetup)
-
-    return {
-      //meetup: meetup,
-    }
-  },
-*/
 
   template: `
     <div>
