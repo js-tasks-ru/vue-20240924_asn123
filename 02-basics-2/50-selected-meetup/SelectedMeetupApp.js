@@ -9,7 +9,7 @@ export default defineComponent({
 
     const selectedIndex = ref(0)
 
-    let meetupData = ref(null)
+    const meetupData = ref(null)
 
     async function loadCurrentMeetup() {
       try {
@@ -20,7 +20,7 @@ export default defineComponent({
       return
     }
 
-    watch([selectedIndex], async () => {
+    watch(selectedIndex, async () => {
       await loadCurrentMeetup()
     })
 
