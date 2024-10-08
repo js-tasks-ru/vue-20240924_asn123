@@ -1,40 +1,43 @@
-<script>
-import { defineComponent } from 'vue'
+<script setup>
 import { UiAlert, UiContainer } from '@shgk/vue-course-ui'
 import MeetupAgenda from './MeetupAgenda.vue'
 import MeetupDescription from './MeetupDescription.vue'
 import MeetupCover from './MeetupCover.vue'
 import MeetupInfo from './MeetupInfo.vue'
 
-export default defineComponent({
-  name: 'MeetupView',
-
-  components: {
-    UiAlert,
-    UiContainer,
+defineProps({
+  meetup: {
+    type: Object,
   },
+
 })
+
 </script>
 
 <template>
   <div>
     <!-- Обложка митапа -->
-
     <UiContainer>
       <div class="meetup">
         <div class="meetup__content">
+          <MeetupCover :title="meetup.title" :image="meetup.image" />
           <h2>Описание</h2>
-
           <!-- Описание митапа -->
+          <MeetupDescription :description="meetup.description" />
 
           <h2>Программа</h2>
 
+          <MeetupAgenda v-if="meetup.agenda?.length" :agenda="meetup.agenda" />
+
           <!-- Программа митапа -->
           <!-- Или при пустой программе - сообщение "Программа пока пуста..." в UiAlert -->
-          <UiAlert></UiAlert>
+          <UiAlert v-if="!meetup.agenda?.length">Программа пока пуста...</UiAlert>
+
         </div>
         <div class="meetup__aside">
+
           <!-- Краткая информация о митапе -->
+          <MeetupInfo :organizer="meetup.organizer" :place="meetup.place" :date="meetup.date" />
 
           <div class="meetup__aside-buttons"></div>
         </div>
@@ -50,8 +53,7 @@ export default defineComponent({
   margin: 48px 0 0;
 }
 
-.meetup__content {
-}
+.meetup__content {}
 
 .meetup__aside {
   margin: 40px 0;
