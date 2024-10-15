@@ -12,7 +12,12 @@
   height: 100%;
 }
 
-:slotted(img, video, picture) {
-  object-fit: scale-down;
+.stretch-container {
+
+  :slotted(img),
+  :slotted(video),
+  :slotted(picture) {
+    object-fit: scale-down;
+  }
 }
 </style>
